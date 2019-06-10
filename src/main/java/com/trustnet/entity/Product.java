@@ -17,12 +17,8 @@ public class Product {
 	private String productName;
 	@Column(name = "IMAGE_URL")
 	private String imageUrl;
-	@Column(name = "PRODUCT_SELLER")
-	private String productSeller;
-	@Column(name = "PRICE")
-	private String price;
-	@Column(name = "LOCATION")
-	public String location;
+	@Column(name = "CATEGORY_ID", unique = true, nullable = false)
+	private long categoryId;
 	@Column(name = "CREATED_DATE")
 	public Date createdDate;
 
@@ -50,30 +46,6 @@ public class Product {
 		this.imageUrl = imageUrl;
 	}
 
-	public String getProductSeller() {
-		return productSeller;
-	}
-
-	public void setProductSeller(String productSeller) {
-		this.productSeller = productSeller;
-	}
-
-	public String getPrice() {
-		return price;
-	}
-
-	public void setPrice(String price) {
-		this.price = price;
-	}
-
-	public String getLocation() {
-		return location;
-	}
-
-	public void setLocation(String location) {
-		this.location = location;
-	}
-
 	public Date getCreatedDate() {
 		return createdDate;
 	}
@@ -81,5 +53,14 @@ public class Product {
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
+
+	public long getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(long categoryId) {
+		this.categoryId = categoryId;
+	}
+	
 
 }
