@@ -5,7 +5,8 @@ public class Product {
 	private String name;
 	private String seller;
 	private String price;
-	private String address;
+	private String mrp;
+	private String description;
 	private String imageUrl;
 	public String getProductId() {
 		return productId;
@@ -31,17 +32,24 @@ public class Product {
 	public void setPrice(String price) {
 		this.price = price;
 	}
-	public String getAddress() {
-		return address;
+	
+	public String getDescription() {
+		return description;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	public String getImageUrl() {
 		return imageUrl;
 	}
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+	public String getMrp() {
+		return mrp;
+	}
+	public void setMrp(String mrp) {
+		this.mrp = mrp;
 	}
 	
 }

@@ -15,8 +15,8 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
-	@GetMapping("/product")
-	public List<Product> getMembers() {
+	@GetMapping("/home")
+	public Object getMembers() {
 	    return productService.getLatestProduct(10L);
 	}
 	
