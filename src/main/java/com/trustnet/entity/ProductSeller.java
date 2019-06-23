@@ -17,6 +17,9 @@ public class ProductSeller {
 	@Column(name = "PRICE")
 	private String price;
 	
+	@Column(name = "MRP")
+	private String mrp;
+	
 	@Column(name = "COUNT")
 	private Integer count;
 
@@ -75,6 +78,14 @@ public class ProductSeller {
 
 	public void setProductId(long productId) {
 		this.productId = productId;
+	}
+
+	public String getMrp() {
+		return mrp;
+	}
+
+	public void setMrp(String mrp) {
+		this.mrp = mrp;
 	}
 
 }
