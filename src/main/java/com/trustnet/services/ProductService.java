@@ -7,11 +7,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import com.trustnet.dto.Prodetail;
 import com.trustnet.dto.Product;
 import com.trustnet.dto.ProductHome;
 import com.trustnet.dto.Seller;
+import com.trustnet.dto.ShopDetail;
+import com.trustnet.entity.SellerDetail;
 import com.trustnet.repo.TrustnetRepository;
 
 @Component
@@ -76,7 +79,7 @@ public class ProductService {
 						+ "join  product_seller c on a.product_id=c.product_id where a.product_id=" + productId);
 
 		seller = (List<Object[]>) tnRepository
-				.findRecord("select a.price,a.mrp,a.seller_id,b.address,b.seller_name," + "from" + "product_seller a "
+				.findRecord("select a.price,a.mrp,a.seller_id,b.address,b.seller_name " + "from" + " product_seller a "
 						+ "join  seller_detail b on a.seller_id = b.seller_id " + "where a.product_id=" + productId);
 
 		seller.stream().forEach((record) -> {
@@ -114,9 +117,46 @@ public class ProductService {
 		return prodetail;
 	}
 
+	@SuppressWarnings("unchecked")
+	public ShopDetail getPSellerDetail(Long sellerId) {
+
+		List<Object[]> reviews = null;
+		ShopDetail shopdetail = new ShopDetail();
+		SellerDetail sd = (SellerDetail) tnRepository.findById(sellerId, SellerDetail.class);
+
+		reviews = (List<Object[]>) tnRepository.findRecord("select a.comment,a.rating " + "from review a "
+				+ "where a.seller_id=" + sellerId);
+		if(sd!=null) {
+		shopdetail.setContact(sd.getContactNumber());
+		shopdetail.setLocation(sd.getAddress());
+		shopdetail.setName(sd.getSellerName());
+		shopdetail.setShopId(sd.getSellerId());
+		shopdetail.setTopsReviews(reviews);
+		}
+		return shopdetail;
+	}
+
 	public Object saveProduct(Object entity) {
 		tnRepository.save(entity);
 		return entity;
+	}
+
+	@SuppressWarnings("unchecked")
+	public Object findDataWithFilter(String category, String priceRange, String locationRange) {
+		List<Object[]> reviews = null;
+		String query = "select a.product_id,a.product_name,a.image_url,b.product_desc,c.price," + "c.mrp from "
+				+ "product a " + "join  product_detail b on a.product_id = b.product_id "
+				+ "join  product_seller c on a.product_id=c.product_id where ";
+		if (!StringUtils.isEmpty(category))
+			query=query.concat("a.category_id=" + category);
+		if (!StringUtils.isEmpty(priceRange)) {
+			String[] price = priceRange.split(",");
+			query=query.concat(" and c.price between " + price[0] + " and " + price[1]);
+		}
+		reviews = (List<Object[]>) tnRepository
+				.findRecord(query);
+
+		return reviews;
 	}
 
 }

@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ShopDetail {
 
 @JsonProperty("shop_id")
-private Integer shopId;
+private Long shopId;
 @JsonProperty("name")
 private String name;
 @JsonProperty("rating")
@@ -30,17 +30,17 @@ private String category;
 @JsonProperty("seller_detatil")
 private String sellerDetatil;
 @JsonProperty("tops_reviews")
-private List<TopsReview> topsReviews = null;
+private List<?> topsReviews = null;
 @JsonIgnore
 private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
 @JsonProperty("shop_id")
-public Integer getShopId() {
+public Long getShopId() {
 return shopId;
 }
 
 @JsonProperty("shop_id")
-public void setShopId(Integer shopId) {
+public void setShopId(Long shopId) {
 this.shopId = shopId;
 }
 
@@ -115,12 +115,12 @@ this.sellerDetatil = sellerDetatil;
 }
 
 @JsonProperty("tops_reviews")
-public List<TopsReview> getTopsReviews() {
+public List<?> getTopsReviews() {
 return topsReviews;
 }
 
 @JsonProperty("tops_reviews")
-public void setTopsReviews(List<TopsReview> topsReviews) {
+public void setTopsReviews(List<?> topsReviews) {
 this.topsReviews = topsReviews;
 }
 

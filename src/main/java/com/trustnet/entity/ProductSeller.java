@@ -15,10 +15,10 @@ public class ProductSeller {
 	private long productSellerId;
 	
 	@Column(name = "PRICE")
-	private String price;
+	private Double price;
 	
 	@Column(name = "MRP")
-	private String mrp;
+	private Double mrp;
 	
 	@Column(name = "COUNT")
 	private Integer count;
@@ -44,11 +44,11 @@ public class ProductSeller {
 		this.productSellerId = productSellerId;
 	}
 
-	public String getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 
@@ -80,11 +80,11 @@ public class ProductSeller {
 		this.productId = productId;
 	}
 
-	public String getMrp() {
+	public Double getMrp() {
 		return mrp;
 	}
 
-	public void setMrp(String mrp) {
+	public void setMrp(Double mrp) {
 		this.mrp = mrp;
 	}
 
