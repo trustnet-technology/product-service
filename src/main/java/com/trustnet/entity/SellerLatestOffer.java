@@ -21,10 +21,10 @@ public class SellerLatestOffer {
 	@Column(name = "OFFER_NAME")
 	private String offerName;
 
-	@Column(name = "PRODUCT_ID", nullable = false)
+	@Column(name = "PRODUCT_ID", unique = false,nullable = false)
 	private long productId;
 
-	@Column(name = "SELLER_ID", nullable = false)
+	@Column(name = "SELLER_ID",unique = false, nullable = false)
 	private long sellerId;
 
 	@Column(name = "OFFER_DESC")

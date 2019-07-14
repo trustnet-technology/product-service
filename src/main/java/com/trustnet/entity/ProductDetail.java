@@ -14,7 +14,7 @@ public class ProductDetail {
 	@Column(name = "PRODUCT_DESC")
 	private String productdESC;
 
-	@Column(name = "PRODUCT_ID", nullable = false)
+	@Column(name = "PRODUCT_ID", unique = false,nullable = false)
 	private long productId;
 
 	public long getProductId() {

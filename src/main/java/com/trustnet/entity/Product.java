@@ -17,7 +17,7 @@ public class Product {
 	private String productName;
 	@Column(name = "IMAGE_URL")
 	private String imageUrl;
-	@Column(name = "CATEGORY_ID", unique = true, nullable = false)
+	@Column(name = "CATEGORY_ID", unique = false, nullable = false)
 	private long categoryId;
 	@Column(name = "CREATED_DATE")
 	public Date createdDate;

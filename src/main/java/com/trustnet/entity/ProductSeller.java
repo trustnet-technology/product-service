@@ -1,3 +1,4 @@
+
 package com.trustnet.entity;
 
 import java.util.Date;
@@ -23,10 +24,10 @@ public class ProductSeller {
 	@Column(name = "COUNT")
 	private Integer count;
 
-	@Column(name = "PRODUCT_ID", nullable = false)
+	@Column(name = "PRODUCT_ID",unique = false, nullable = false)
 	private long productId;
 	
-	@Column(name = "SELLER_ID", nullable = false)
+	@Column(name = "SELLER_ID", unique = false,nullable = false)
 	private long sellerId;
 	
 	@Column(name = "CREATED_DATE")
