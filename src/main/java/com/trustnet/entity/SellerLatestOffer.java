@@ -10,7 +10,7 @@ import javax.persistence.Table;
 public class SellerLatestOffer {
 	@Id
 	@Column(name = "OFFER_ID", unique = true, nullable = false)
-	private long productSellerId;
+	private long offerId;
 
 	@Column(name = "PRICE")
 	private String price;
@@ -34,12 +34,12 @@ public class SellerLatestOffer {
 		return productId;
 	}
 
-	public long getProductSellerId() {
-		return productSellerId;
+	public long getOfferId() {
+		return offerId;
 	}
 
-	public void setProductSellerId(long productSellerId) {
-		this.productSellerId = productSellerId;
+	public void setOfferId(long offerId) {
+		this.offerId = offerId;
 	}
 
 	public String getPrice() {

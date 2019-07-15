@@ -20,6 +20,9 @@ public class Review {
 	
 	@Column(name = "SELLER_ID", unique = false,nullable = false)
 	private long sellerId;
+	
+	@Column(name = "REVIEWER_NAME")
+	private String reviewerName;
 
 	public long getReviewId() {
 		return reviewId;
@@ -52,5 +55,15 @@ public class Review {
 	public void setSellerId(long sellerId) {
 		this.sellerId = sellerId;
 	}
+
+	public String getReviewerName() {
+		return reviewerName;
+	}
+
+	public void setReviewerName(String reviewerName) {
+		this.reviewerName = reviewerName;
+	}
+	
+	
 
 }

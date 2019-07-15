@@ -22,6 +22,21 @@ public class SellerDetail {
 	private String address;
 	@Column(name = "CONTACT_NUMBER")
 	private String contactNumber;
+	
+	@Column(name = "OPENING_HOUR")
+	private String openingHour;
+	
+	@Column(name = "CLOSING_HOUR")
+	private String closingHour;
+	
+	@Column(name = "PINCODE")
+	private String pincode;
+	
+	@Column(name = "PROFILE_IMAGE")
+	private String profileImage;
+	
+	@Column(name = "LAT_LON")
+	private String latLong;
 
 	
 	public String getSellerName() {
@@ -64,6 +79,45 @@ public class SellerDetail {
 		this.sellerId = sellerId;
 	}
 
+	public String getOpeningHour() {
+		return openingHour;
+	}
+
+	public void setOpeningHour(String openingHour) {
+		this.openingHour = openingHour;
+	}
+
+	public String getClosingHour() {
+		return closingHour;
+	}
+
+	public void setClosingHour(String closingHour) {
+		this.closingHour = closingHour;
+	}
+
+	public String getPincode() {
+		return pincode;
+	}
+
+	public void setPincode(String pincode) {
+		this.pincode = pincode;
+	}
+
+	public String getProfileImage() {
+		return profileImage;
+	}
+
+	public void setProfileImage(String profileImage) {
+		this.profileImage = profileImage;
+	}
+
+	public String getLatLong() {
+		return latLong;
+	}
+
+	public void setLatLong(String latLong) {
+		this.latLong = latLong;
+	}
 	
 
 }

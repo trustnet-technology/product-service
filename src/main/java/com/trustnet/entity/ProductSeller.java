@@ -32,6 +32,12 @@ public class ProductSeller {
 	
 	@Column(name = "CREATED_DATE")
 	public Date createdDate;
+	
+	@Column(name = "PRODUCT_DESC")
+	private String prodDesc;
+	
+	@Column(name = "IMAGES")
+	private String images;
 
 	public long getProductId() {
 		return productId;
@@ -88,5 +94,23 @@ public class ProductSeller {
 	public void setMrp(Double mrp) {
 		this.mrp = mrp;
 	}
+
+	public String getProdDesc() {
+		return prodDesc;
+	}
+
+	public void setProdDesc(String prodDesc) {
+		this.prodDesc = prodDesc;
+	}
+
+	public String getImages() {
+		return images;
+	}
+
+	public void setImages(String images) {
+		this.images = images;
+	}
+	
+	
 
 }
