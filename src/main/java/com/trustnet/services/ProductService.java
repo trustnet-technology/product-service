@@ -26,10 +26,10 @@ public class ProductService {
 	@SuppressWarnings("unchecked")
 	public ProductHome getLatestProduct(Long customerId) {
 
-		List<Long> categories = (List<Long>) tnRepository.findRecord("select category_id from category");
+		List<String> categories = (List<String>) tnRepository.findRecord("select category_id from category");
 		List<Object[]> products = null;
 		ProductHome home = new ProductHome();
-		for (Long id : categories) {
+		for (String id : categories) {
 
 			products = (List<Object[]>) tnRepository
 					.findRecord("select a.product_id,a.product_name,a.image_url,b.product_desc,c.price,"
@@ -53,13 +53,13 @@ public class ProductService {
 				p.setProductId(pid.toString());
 				pList.add(p);
 			});
-			if (id == 1)
+			if (id.equals("1"))
 				home.setApparel(pList);
-			if (id == 2)
+			if (id.equals("2"))
 				home.setDecor(pList);
-			if (id == 3)
+			if (id.equals("3"))
 				home.setGrocery(pList);
-			if (id == 4)
+			if (id.equals("4"))
 				home.setHome_appliances(pList);
 
 		}
@@ -74,7 +74,7 @@ public class ProductService {
 		Prodetail prodetail = new Prodetail();
 		List<Seller> sList = new ArrayList<>();
 		products = (List<Object[]>) tnRepository
-				.findRecord("select a.product_name,a.image_url,b.category_name,b.product_desc,c.price," + "c.mrp from "
+				.findRecord("select a.product_name,a.image_url,a.category_id,b.product_desc,c.price," + "c.mrp from "
 						+ "product a " + "join  product_detail b on a.product_id = b.product_id "
 						+ "join  product_seller c on a.product_id=c.product_id where a.product_id=" + productId);
 
@@ -124,14 +124,14 @@ public class ProductService {
 		ShopDetail shopdetail = new ShopDetail();
 		SellerDetail sd = (SellerDetail) tnRepository.findById(sellerId, SellerDetail.class);
 
-		reviews = (List<Object[]>) tnRepository.findRecord("select a.comment,a.rating " + "from review a "
-				+ "where a.seller_id=" + sellerId);
-		if(sd!=null) {
-		shopdetail.setContact(sd.getContactNumber());
-		shopdetail.setLocation(sd.getAddress());
-		shopdetail.setName(sd.getSellerName());
-		shopdetail.setShopId(sd.getSellerId());
-		shopdetail.setTopsReviews(reviews);
+		reviews = (List<Object[]>) tnRepository
+				.findRecord("select a.comment,a.rating " + "from review a " + "where a.seller_id=" + sellerId);
+		if (sd != null) {
+			shopdetail.setContact(sd.getContactNumber());
+			shopdetail.setLocation(sd.getAddress());
+			shopdetail.setName(sd.getSellerName());
+			shopdetail.setShopId(sd.getSellerId());
+			shopdetail.setTopsReviews(reviews);
 		}
 		return shopdetail;
 	}
@@ -157,6 +157,11 @@ public class ProductService {
 				.findRecord(query);
 
 		return reviews;
+	}
+
+	public Object getRecentSeller() {
+		List<SellerDetail> recentSellers = (List<SellerDetail>)tnRepository.findRecords("select * from nearbymaster.seller_detail sd order by modified_date desc limit 3", SellerDetail.class);
+		return recentSellers;
 	}
 
 }

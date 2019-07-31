@@ -37,6 +37,10 @@ public class TrustnetRepository {
 			return entityManager.createNativeQuery(query).getResultList();
 			
 	}
+	public List<?> findRecords(String query, Class<?> clazz) {
+		return entityManager.createNativeQuery(query, clazz).getResultList();
+		
+}
 	
 	
 }

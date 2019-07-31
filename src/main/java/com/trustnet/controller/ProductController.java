@@ -31,6 +31,11 @@ public class ProductController {
 	public Object getSellerDetail(@RequestParam("sellerId") Long id) {
 		return productService.getPSellerDetail(id);
 	}
+	
+	@GetMapping("/recentSeller")
+	public Object getRecentSeller() {
+		return productService.getRecentSeller();
+	}
 
 	@PostMapping("/search")
 	public Object getSearchData(@RequestBody String data) {

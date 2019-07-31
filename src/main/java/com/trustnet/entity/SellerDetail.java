@@ -35,8 +35,11 @@ public class SellerDetail {
 	@Column(name = "PROFILE_IMAGE")
 	private String profileImage;
 	
-	@Column(name = "LAT_LON")
-	private String latLong;
+	@Column(name = "LAT")
+	private String lat;
+	
+	@Column(name = "LON")
+	private String lon;
 
 	
 	public String getSellerName() {
@@ -111,13 +114,20 @@ public class SellerDetail {
 		this.profileImage = profileImage;
 	}
 
-	public String getLatLong() {
-		return latLong;
+	public String getLat() {
+		return lat;
 	}
 
-	public void setLatLong(String latLong) {
-		this.latLong = latLong;
+	public void setLat(String lat) {
+		this.lat = lat;
 	}
-	
+
+	public String getLon() {
+		return lon;
+	}
+
+	public void setLon(String lon) {
+		this.lon = lon;
+	}
 
 }

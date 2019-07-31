@@ -18,7 +18,7 @@ public class Product {
 	@Column(name = "IMAGE_URL")
 	private String imageUrl;
 	@Column(name = "CATEGORY_ID", unique = false, nullable = false)
-	private long categoryId;
+	private String categoryId;
 	@Column(name = "CREATED_DATE")
 	public Date createdDate;
 	@Column(name = "BANNER_IMAGE_URL")
@@ -56,11 +56,11 @@ public class Product {
 		this.createdDate = createdDate;
 	}
 
-	public long getCategoryId() {
+	public String getCategoryId() {
 		return categoryId;
 	}
 
-	public void setCategoryId(long categoryId) {
+	public void setCategoryId(String categoryId) {
 		this.categoryId = categoryId;
 	}
 

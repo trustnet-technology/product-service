@@ -10,7 +10,7 @@ import javax.persistence.Table;
 public class Category {
 	@Id
 	@Column(name = "CATEGORY_ID", unique = true, nullable = false)
-	private long categoryId;
+	private String categoryId;
 	
 	@Column(name = "CATEGORY_NAME")
 	private String categoryName;
@@ -18,11 +18,11 @@ public class Category {
 	@Column(name = "TOP_CATEGORY")
 	private Integer topCategory;
 
-	public long getCategoryId() {
+	public String getCategoryId() {
 		return categoryId;
 	}
 
-	public void setCategoryId(long categoryId) {
+	public void setCategoryId(String categoryId) {
 		this.categoryId = categoryId;
 	}
 
