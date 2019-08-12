@@ -1,55 +1,61 @@
 package com.trustnet.dto;
 
+import java.util.Date;
+
 public class Product {
 	private String productId;
-	private String name;
-	private String seller;
-	private String price;
-	private String mrp;
+	private String productName;
+	private String categoryId;
+	private Date createdDate;
+	private String prductTitle;
 	private String description;
-	private String imageUrl;
+
 	public String getProductId() {
 		return productId;
 	}
+
 	public void setProductId(String productId) {
 		this.productId = productId;
 	}
-	public String getName() {
-		return name;
+
+	public String getProductName() {
+		return productName;
 	}
-	public void setName(String name) {
-		this.name = name;
+
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
-	public String getSeller() {
-		return seller;
+
+	public String getCategoryId() {
+		return categoryId;
 	}
-	public void setSeller(String seller) {
-		this.seller = seller;
+
+	public void setCategoryId(String categoryId) {
+		this.categoryId = categoryId;
 	}
-	public String getPrice() {
-		return price;
+
+	public Date getCreatedDate() {
+		return createdDate;
 	}
-	public void setPrice(String price) {
-		this.price = price;
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
 	}
-	
+
+	public String getPrductTitle() {
+		return prductTitle;
+	}
+
+	public void setPrductTitle(String prductTitle) {
+		this.prductTitle = prductTitle;
+	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getImageUrl() {
-		return imageUrl;
-	}
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
-	}
-	public String getMrp() {
-		return mrp;
-	}
-	public void setMrp(String mrp) {
-		this.mrp = mrp;
-	}
-	
+
 }

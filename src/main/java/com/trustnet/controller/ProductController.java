@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.trustnet.dto.Search;
+import com.trustnet.entity.UserCart;
+import com.trustnet.entity.UserOrder;
 import com.trustnet.services.ProductService;
 
 @RestController
@@ -27,11 +29,16 @@ public class ProductController {
 		return productService.getProductDetail(id);
 	}
 
+	@GetMapping("/productAttribute")
+	public Object getProductAttribute(@RequestParam("productId") Long id) {
+		return productService.getProductAttribute(id);
+	}
+
 	@GetMapping("/sellerDetail")
 	public Object getSellerDetail(@RequestParam("sellerId") Long id) {
 		return productService.getPSellerDetail(id);
 	}
-	
+
 	@GetMapping("/recentSeller")
 	public Object getRecentSeller() {
 		return productService.getRecentSeller();
@@ -52,4 +59,28 @@ public class ProductController {
 		return searchData;
 	}
 
+	@PostMapping("/addToCart")
+	public Object addToCart() {
+		return null;
+	}
+
+	@GetMapping("/userCart")
+	public Object getUserCarts(@RequestParam("userId") String userId) {
+		return productService.getUserCarts(userId);
+	}
+
+	@GetMapping("/userOrder")
+	public Object getUserOrders(String userId) {
+		return productService.getUserOrders(userId);
+	}
+	
+	@PostMapping("/userCart")
+	public Object addUserCart(@RequestBody UserCart userCart) {
+		return productService.saveUserCart(userCart);
+	}
+	
+	@PostMapping("/userOrder")
+	public Object addUserOrder(@RequestBody UserOrder userOrder) {
+		return productService.saveUserOrder(userOrder);
+	}
 }

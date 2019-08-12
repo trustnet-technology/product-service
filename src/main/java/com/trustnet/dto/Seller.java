@@ -1,99 +1,126 @@
 package com.trustnet.dto;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 
 public class Seller {
 
-@JsonProperty("seller_id")
-private Long sellerId;
-@JsonProperty("name")
-private String name;
-@JsonProperty("location")
-private String location;
-@JsonProperty("rating")
-private String rating;
-@JsonProperty("price")
-private String price;
-@JsonProperty("mrp")
-private String mrp;
-@JsonIgnore
-private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+	@JsonProperty("seller_id")
+	private long sellerId;
 
-@JsonProperty("seller_id")
-public Long getSellerId() {
-return sellerId;
-}
+	@JsonProperty("SELLER_NAME")
+	private String sellerName;
 
-@JsonProperty("seller_id")
-public void setSellerId(Long sellerId) {
-this.sellerId = sellerId;
-}
+	@JsonProperty("MAIN_SELLER")
+	private Integer mainSeller;
 
-@JsonProperty("name")
-public String getName() {
-return name;
-}
+	@JsonProperty("ADDRESS")
+	private String address;
+	@JsonProperty("CONTACT_NUMBER")
+	private String contactNumber;
 
-@JsonProperty("name")
-public void setName(String name) {
-this.name = name;
-}
+	@JsonProperty("OPENING_HOUR")
+	private String openingHour;
 
-@JsonProperty("location")
-public String getLocation() {
-return location;
-}
+	@JsonProperty("CLOSING_HOUR")
+	private String closingHour;
 
-@JsonProperty("location")
-public void setLocation(String location) {
-this.location = location;
-}
+	@JsonProperty("PINCODE")
+	private String pincode;
 
-@JsonProperty("rating")
-public String getRating() {
-return rating;
-}
+	@JsonProperty("PROFILE_IMAGE")
+	private String profileImage;
 
-@JsonProperty("rating")
-public void setRating(String rating) {
-this.rating = rating;
-}
+	@JsonProperty("LAT")
+	private String lat;
 
-@JsonProperty("price")
-public String getPrice() {
-return price;
-}
+	@JsonProperty("LON")
+	private String lon;
 
-@JsonProperty("price")
-public void setPrice(String price) {
-this.price = price;
-}
+	public long getSellerId() {
+		return sellerId;
+	}
 
-@JsonProperty("mrp")
-public String getMrp() {
-return mrp;
-}
+	public void setSellerId(long sellerId) {
+		this.sellerId = sellerId;
+	}
 
-@JsonProperty("mrp")
-public void setMrp(String mrp) {
-this.mrp = mrp;
-}
+	public String getSellerName() {
+		return sellerName;
+	}
 
-@JsonAnyGetter
-public Map<String, Object> getAdditionalProperties() {
-return this.additionalProperties;
-}
+	public void setSellerName(String sellerName) {
+		this.sellerName = sellerName;
+	}
 
-@JsonAnySetter
-public void setAdditionalProperty(String name, Object value) {
-this.additionalProperties.put(name, value);
-}
+	public Integer getMainSeller() {
+		return mainSeller;
+	}
 
+	public void setMainSeller(Integer mainSeller) {
+		this.mainSeller = mainSeller;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getContactNumber() {
+		return contactNumber;
+	}
+
+	public void setContactNumber(String contactNumber) {
+		this.contactNumber = contactNumber;
+	}
+
+	public String getOpeningHour() {
+		return openingHour;
+	}
+
+	public void setOpeningHour(String openingHour) {
+		this.openingHour = openingHour;
+	}
+
+	public String getClosingHour() {
+		return closingHour;
+	}
+
+	public void setClosingHour(String closingHour) {
+		this.closingHour = closingHour;
+	}
+
+	public String getPincode() {
+		return pincode;
+	}
+
+	public void setPincode(String pincode) {
+		this.pincode = pincode;
+	}
+
+	public String getProfileImage() {
+		return profileImage;
+	}
+
+	public void setProfileImage(String profileImage) {
+		this.profileImage = profileImage;
+	}
+
+	public String getLat() {
+		return lat;
+	}
+
+	public void setLat(String lat) {
+		this.lat = lat;
+	}
+
+	public String getLon() {
+		return lon;
+	}
+
+	public void setLon(String lon) {
+		this.lon = lon;
+	}
 }
