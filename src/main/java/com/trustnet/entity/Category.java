@@ -42,6 +42,10 @@ public class Category {
 		this.topCategory = topCategory;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "Category [categoryId=" + categoryId + ", categoryName=" + categoryName + ", topCategory=" + topCategory
+				+ "]";
+	}
 
 }

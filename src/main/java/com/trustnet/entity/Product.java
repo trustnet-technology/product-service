@@ -10,24 +10,28 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "PRODUCT")
 public class Product {
+	
 	@Id
 	@Column(name = "PRODUCT_ID", unique = true, nullable = false)
-	private long productId;
+	private String productId;
 
 	@Column(name = "PRODUCT_NAME")
 	private String productName;
 
 	@Column(name = "IMAGE_URL")
 	private String imageUrl;
+	
+	@Column(name = "PRODUCT_DESC")
+	private String productDesc;
 
-	@Column(name = "CATEGORY_ID", unique = false, nullable = false)
-	private String categoryId;
-
+	@Column(name = "SUB_CATEGORY_ID")
+	private String subCategoryId;
+	
 	@Column(name = "CREATED_DATE")
 	public Date createdDate;
-
-	@Column(name = "BANNER_IMAGE_URL")
-	private String bannerImageUrl;
+	
+	@Column(name = "MODIFIED_DATE")
+	public Date modifiedDate;
 
 	@Column(name = "PRODCUT_TITLE")
 	private String prductTitle;
@@ -35,14 +39,20 @@ public class Product {
 	@Column(name = "DESCRIPTION")
 	private String description;
 
-	@Column(name = "CITY")
-	private String city;
+	@Column(name = "CITY_ID")
+	private String cityId;
+	
+	@Column(name = "IS_TOP_PRODUCT")
+	public String isTopProduct;
+	
+	@Column(name = "MIN_PRICE")
+	public String minPrice;
 
-	public long getProductId() {
+	public String getProductId() {
 		return productId;
 	}
 
-	public void setProductId(long productId) {
+	public void setProductId(String productId) {
 		this.productId = productId;
 	}
 
@@ -62,6 +72,22 @@ public class Product {
 		this.imageUrl = imageUrl;
 	}
 
+	public String getProductDesc() {
+		return productDesc;
+	}
+
+	public void setProductDesc(String productDesc) {
+		this.productDesc = productDesc;
+	}
+
+	public String getSubCategoryId() {
+		return subCategoryId;
+	}
+
+	public void setSubCategoryId(String subCategoryId) {
+		this.subCategoryId = subCategoryId;
+	}
+
 	public Date getCreatedDate() {
 		return createdDate;
 	}
@@ -70,20 +96,12 @@ public class Product {
 		this.createdDate = createdDate;
 	}
 
-	public String getCategoryId() {
-		return categoryId;
+	public Date getModifiedDate() {
+		return modifiedDate;
 	}
 
-	public void setCategoryId(String categoryId) {
-		this.categoryId = categoryId;
-	}
-
-	public String getBannerImageUrl() {
-		return bannerImageUrl;
-	}
-
-	public void setBannerImageUrl(String bannerImageUrl) {
-		this.bannerImageUrl = bannerImageUrl;
+	public void setModifiedDate(Date modifiedDate) {
+		this.modifiedDate = modifiedDate;
 	}
 
 	public String getPrductTitle() {
@@ -102,12 +120,36 @@ public class Product {
 		this.description = description;
 	}
 
-	public String getCity() {
-		return city;
+	public String getCityId() {
+		return cityId;
 	}
 
-	public void setCity(String city) {
-		this.city = city;
+	public void setCityId(String cityId) {
+		this.cityId = cityId;
+	}
+
+	public String getIsTopProduct() {
+		return isTopProduct;
+	}
+
+	public void setIsTopProduct(String isTopProduct) {
+		this.isTopProduct = isTopProduct;
+	}
+
+	public String getMinPrice() {
+		return minPrice;
+	}
+
+	public void setMinPrice(String minPrice) {
+		this.minPrice = minPrice;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [productId=" + productId + ", productName=" + productName + ", imageUrl=" + imageUrl
+				+ ", productDesc=" + productDesc + ", subCategoryId=" + subCategoryId + ", createdDate=" + createdDate
+				+ ", modifiedDate=" + modifiedDate + ", prductTitle=" + prductTitle + ", description=" + description
+				+ ", cityId=" + cityId + ", isTopProduct=" + isTopProduct + ", minPrice=" + minPrice + "]";
 	}
 
 }

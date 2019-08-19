@@ -1,5 +1,7 @@
 package com.trustnet.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -10,13 +12,10 @@ import javax.persistence.Table;
 public class SellerDetail {
 	@Id
 	@Column(name = "SELLER_ID", unique = true, nullable = false)
-	private long sellerId;
+	private String sellerId;
 	
 	@Column(name = "SELLER_NAME")
 	private String sellerName;
-	
-	@Column(name = "MAIN_SELLER")
-	private Integer mainSeller;
 	
 	@Column(name = "ADDRESS")
 	private String address;
@@ -35,99 +34,200 @@ public class SellerDetail {
 	@Column(name = "PROFILE_IMAGE")
 	private String profileImage;
 	
-	@Column(name = "LAT")
-	private String lat;
+	@Column(name = "CREATED_DATE")
+	public Date createdDate;
 	
-	@Column(name = "LON")
-	private String lon;
+	@Column(name = "MODIFIED_DATE")
+	public Date modifiedDate;
+	
 
-	
+	@Column(name = "CITY_ID")
+	private String cityId;
+
+
+	/**
+	 * @return the sellerId
+	 */
+	public String getSellerId() {
+		return sellerId;
+	}
+
+
+	/**
+	 * @param sellerId the sellerId to set
+	 */
+	public void setSellerId(String sellerId) {
+		this.sellerId = sellerId;
+	}
+
+
+	/**
+	 * @return the sellerName
+	 */
 	public String getSellerName() {
 		return sellerName;
 	}
 
+
+	/**
+	 * @param sellerName the sellerName to set
+	 */
 	public void setSellerName(String sellerName) {
 		this.sellerName = sellerName;
 	}
 
-	public Integer getMainSeller() {
-		return mainSeller;
-	}
 
-	public void setMainSeller(Integer mainSeller) {
-		this.mainSeller = mainSeller;
-	}
-
+	/**
+	 * @return the address
+	 */
 	public String getAddress() {
 		return address;
 	}
 
+
+	/**
+	 * @param address the address to set
+	 */
 	public void setAddress(String address) {
 		this.address = address;
 	}
 
+
+	/**
+	 * @return the contactNumber
+	 */
 	public String getContactNumber() {
 		return contactNumber;
 	}
 
+
+	/**
+	 * @param contactNumber the contactNumber to set
+	 */
 	public void setContactNumber(String contactNumber) {
 		this.contactNumber = contactNumber;
 	}
 
-	public long getSellerId() {
-		return sellerId;
-	}
 
-	public void setSellerId(long sellerId) {
-		this.sellerId = sellerId;
-	}
-
+	/**
+	 * @return the openingHour
+	 */
 	public String getOpeningHour() {
 		return openingHour;
 	}
 
+
+	/**
+	 * @param openingHour the openingHour to set
+	 */
 	public void setOpeningHour(String openingHour) {
 		this.openingHour = openingHour;
 	}
 
+
+	/**
+	 * @return the closingHour
+	 */
 	public String getClosingHour() {
 		return closingHour;
 	}
 
+
+	/**
+	 * @param closingHour the closingHour to set
+	 */
 	public void setClosingHour(String closingHour) {
 		this.closingHour = closingHour;
 	}
 
+
+	/**
+	 * @return the pincode
+	 */
 	public String getPincode() {
 		return pincode;
 	}
 
+
+	/**
+	 * @param pincode the pincode to set
+	 */
 	public void setPincode(String pincode) {
 		this.pincode = pincode;
 	}
 
+
+	/**
+	 * @return the profileImage
+	 */
 	public String getProfileImage() {
 		return profileImage;
 	}
 
+
+	/**
+	 * @param profileImage the profileImage to set
+	 */
 	public void setProfileImage(String profileImage) {
 		this.profileImage = profileImage;
 	}
 
-	public String getLat() {
-		return lat;
+
+	/**
+	 * @return the createdDate
+	 */
+	public Date getCreatedDate() {
+		return createdDate;
 	}
 
-	public void setLat(String lat) {
-		this.lat = lat;
+
+	/**
+	 * @param createdDate the createdDate to set
+	 */
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
 	}
 
-	public String getLon() {
-		return lon;
+
+	/**
+	 * @return the modifiedDate
+	 */
+	public Date getModifiedDate() {
+		return modifiedDate;
 	}
 
-	public void setLon(String lon) {
-		this.lon = lon;
+
+	/**
+	 * @param modifiedDate the modifiedDate to set
+	 */
+	public void setModifiedDate(Date modifiedDate) {
+		this.modifiedDate = modifiedDate;
 	}
 
+
+	/**
+	 * @return the cityId
+	 */
+	public String getCityId() {
+		return cityId;
+	}
+
+
+	/**
+	 * @param cityId the cityId to set
+	 */
+	public void setCityId(String cityId) {
+		this.cityId = cityId;
+	}
+
+
+	@Override
+	public String toString() {
+		return "SellerDetail [sellerId=" + sellerId + ", sellerName=" + sellerName + ", address=" + address
+				+ ", contactNumber=" + contactNumber + ", openingHour=" + openingHour + ", closingHour=" + closingHour
+				+ ", pincode=" + pincode + ", profileImage=" + profileImage + ", createdDate=" + createdDate
+				+ ", modifiedDate=" + modifiedDate + ", cityId=" + cityId + "]";
+	}
+
+	
 }
