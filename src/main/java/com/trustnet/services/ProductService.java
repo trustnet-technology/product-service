@@ -1,12 +1,17 @@
 package com.trustnet.services;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
+import com.trustnet.dto.ProductSellerDTO;
 import com.trustnet.entity.Product;
+import com.trustnet.entity.ProductAttribute;
+import com.trustnet.entity.ProductDetailResponse;
 import com.trustnet.entity.SellerDetail;
 import com.trustnet.entity.SubCategory;
 import com.trustnet.entity.UserCart;
@@ -199,6 +204,65 @@ public class ProductService {
 		List<UserOrder> userOrders = (List<UserOrder>) tnRepository.findRecords(
 				"select * from nearbymaster.user_order uc where user_id = " + "'" + userId + "'", UserOrder.class);
 		return userOrders;
+	}
+
+	public List<ProductDetailResponse> getProductDetailResponse(String productId, String lat, String lon) {
+		List<ProductDetailResponse> productDetailResponses = new ArrayList<>();
+
+		List<ProductAttribute> productAttributes = (List<ProductAttribute>) tnRepository.findRecords(
+				"select * from nearbymaster.product_attribute pa where product_id = " + "'" + productId + "'",
+				ProductAttribute.class);
+
+		for (ProductAttribute productAttribute : productAttributes) {
+			ProductDetailResponse productDetailResponse = new ProductDetailResponse();
+			productDetailResponse.setProductAttribute(productAttribute);
+			List<Object[]> productSellers = (List<Object[]>) tnRepository.findRecord(
+					"SELECT ps.*, " + "    ST_distance_sphere(" + "        point(pd.lat, pd.lon), " + "        point("
+							+ lat + ", " + lon + ")" + ") as distance  from nearbymaster.product_seller pd INNER JOIN "
+							+ " nearbymaster.product_seller ps where ps.product_attribute_id = " + "'"
+							+ productAttribute.getProductAttributeId() + "'");
+
+			List<ProductSellerDTO> productSeller = new ArrayList<>();
+
+			productSellers.stream().forEach((record) -> {
+				String productSellerId = (String) record[0];
+				int count = (int) record[1];
+				Date createDate = (Date) record[2];
+				String productAttributeId = (String) record[3];
+				String sellerId = (String) record[4];
+				String images = (String) record[5];
+				Date modifiedDate = (Date) record[6];
+				String latitue = (String) record[7];
+				String longitude = (String) record[8];
+				String avgRating = (String) record[9];
+				String sellerName = (String) record[10];
+				String sellerAddress = (String) record[11];
+				Double distance = (Double) record[12];
+
+				ProductSellerDTO productSellerDTO = new ProductSellerDTO();
+
+				productSellerDTO.setProductSellerId(productSellerId);
+				productSellerDTO.setCreatedDate(createDate);
+				productSellerDTO.setCount(count);
+				productSellerDTO.setProductAttributeId(productAttributeId);
+				productSellerDTO.setSellerId(sellerId);
+				productSellerDTO.setImages(images);
+				productSellerDTO.setModifiedDate(modifiedDate);
+				productSellerDTO.setLat(latitue);
+				productSellerDTO.setLon(longitude);
+				productSellerDTO.setAvgRating(avgRating);
+				productSellerDTO.setSellerName(sellerName);
+				productSellerDTO.setSellerAddress(sellerAddress);
+				productSellerDTO.setDistance(String.valueOf(distance));
+
+				productSeller.add(productSellerDTO);
+			});
+
+			productDetailResponse.setProductSellers(productSeller);
+			productDetailResponses.add(productDetailResponse);
+		}
+
+		return productDetailResponses;
 	}
 
 	public Object saveUserCart(UserCart userCart) {

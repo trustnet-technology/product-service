@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.trustnet.entity.Category;
 import com.trustnet.entity.Product;
 import com.trustnet.entity.ProductAttribute;
+import com.trustnet.entity.ProductDetailResponse;
 import com.trustnet.entity.ProductSeller;
 import com.trustnet.entity.SellerDetail;
 import com.trustnet.entity.SubCategory;
@@ -107,19 +108,26 @@ public class ProductController {
 		_LOGGER.debug("[getSubCategoriesOfCategories]");
 		return productService.getAllSubCategoryOfCategories();
 	}
-	
+
 	@GetMapping("/getSubCatOfCategory")
 	public List<SubCategory> getAllSubCategoryOfCategory(@RequestParam("categoryId") String categoryId) {
 		_LOGGER.debug("[getSubCatOfCategory]" + categoryId);
 		return productService.getAllSubCategoryOfCategory(categoryId);
 	}
-	
+
 	@GetMapping("/getProductsOfSubCat")
 	public List<Product> getAllProductsOfSubCat(@RequestParam("subCategoryId") String subCategoryId) {
 		_LOGGER.debug("[getProductsOfSubCat]" + subCategoryId);
 		return productService.getAllProductsOfSubCategory(subCategoryId);
 	}
-	
+
+	@GetMapping("/getProductsDetails")
+	public List<ProductDetailResponse> getProductsDetails(@RequestParam("productId") String productId,
+			@RequestParam("lat") String lat, @RequestParam("lon") String lon) {
+		_LOGGER.debug("[getProductsDetails]" + productId);
+		return productService.getProductDetailResponse(productId, lat, lon);
+	}
+
 	@PutMapping("/userOrder")
 	public void addUpdateUserOrder(@RequestBody UserOrder userOrder) {
 		productService.addUpdateObject(userOrder);

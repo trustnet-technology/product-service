@@ -18,7 +18,7 @@ public class Review {
 	@Column(name = "RATING")
 	private Integer topCategory;
 	
-	@Column(name = "SELLER_ID", unique = false,nullable = false)
+	@Column(name = "SELLER_ID")
 	private long sellerId;
 	
 	@Column(name = "REVIEWER_NAME")

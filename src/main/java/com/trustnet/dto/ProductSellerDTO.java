@@ -1,53 +1,36 @@
-
-package com.trustnet.entity;
+package com.trustnet.dto;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "PRODUCT_SELLER")
-public class ProductSeller {
-	@Id
-	@Column(name = "PRODUCT_SELLER_ID", unique = true, nullable = false)
+public class ProductSellerDTO {
+	
 	private String productSellerId;
 	
-	@Column(name = "COUNT")
 	private Integer count;
 
-	@Column(name = "PRODUCT_ATTRIBUTE_ID")
 	private String productAttributeId;
 	
-	@Column(name = "SELLER_ID")
 	private String sellerId;
 	
-	@Column(name = "CREATED_DATE")
 	public Date createdDate;
 	
-	@Column(name = "MODIFIED_DATE")
 	public Date modifiedDate;
 	
-	@Column(name = "IMAGES")
 	private String images;
 	
-	@Column(name = "LAT")
 	private String lat;
 	
-	@Column(name = "LON")
 	private String lon;
 	
-	@Column(name = "AVG_RATING")
 	private String avgRating;
 	
-	@Column(name = "SELLER_NAME")
 	private String sellerName;
 	
-	@Column(name = "SELLER_ADDRESS")
 	private String sellerAddress;
 	
+	private String distance;
+	
+
 	/**
 	 * @return the productSellerId
 	 */
@@ -216,12 +199,26 @@ public class ProductSeller {
 		this.sellerAddress = sellerAddress;
 	}
 
-	@Override
-	public String toString() {
-		return "ProductSeller [productSellerId=" + productSellerId + ", count=" + count + ", productAttributeId="
-				+ productAttributeId + ", sellerId=" + sellerId + ", createdDate=" + createdDate + ", modifiedDate="
-				+ modifiedDate + ", images=" + images + ", lat=" + lat + ", lon=" + lon + ", avgRating=" + avgRating
-				+ ", sellerName=" + sellerName + ", sellerAddress=" + sellerAddress + "]";
+	/**
+	 * @return the distance
+	 */
+	public String getDistance() {
+		return distance;
 	}
 
+	/**
+	 * @param distance the distance to set
+	 */
+	public void setDistance(String distance) {
+		this.distance = distance;
+	}
+
+	@Override
+	public String toString() {
+		return "ProductSellerDTO [productSellerId=" + productSellerId + ", count=" + count + ", productAttributeId="
+				+ productAttributeId + ", sellerId=" + sellerId + ", createdDate=" + createdDate + ", modifiedDate="
+				+ modifiedDate + ", images=" + images + ", lat=" + lat + ", lon=" + lon + ", avgRating=" + avgRating
+				+ ", sellerName=" + sellerName + ", sellerAddress=" + sellerAddress + ", distance=" + distance + "]";
+	}
+	
 }
