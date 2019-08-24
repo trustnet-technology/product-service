@@ -1,20 +1,14 @@
 package com.trustnet;
 
-import java.util.List;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.services.rds.AmazonRDS;
-import com.amazonaws.services.rds.AmazonRDSClientBuilder;
-import com.amazonaws.services.rds.model.DBInstance;
-import com.amazonaws.services.rds.model.DescribeDBInstancesRequest;
-import com.amazonaws.services.rds.model.DescribeDBInstancesResult;
-
+@EnableWebMvc
 @SpringBootApplication
-public class TrustnetApplication {
+public class TrustnetApplication implements WebMvcConfigurer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TrustnetApplication.class, args);
@@ -28,6 +22,15 @@ public class TrustnetApplication {
 		 * = rdsClient.describeDBInstances(request); List<DBInstance> list =
 		 * result.getDBInstances();
 		 */
+	}
+	
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+	    registry.addResourceHandler("swagger-ui.html")
+	      .addResourceLocations("classpath:/META-INF/resources/");
+	 
+	    registry.addResourceHandler("/webjars/**")
+	      .addResourceLocations("classpath:/META-INF/resources/webjars/");
 	}
 
 }

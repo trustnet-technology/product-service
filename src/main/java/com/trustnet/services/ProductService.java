@@ -12,6 +12,7 @@ import com.trustnet.dto.ProductSellerDTO;
 import com.trustnet.entity.Product;
 import com.trustnet.entity.ProductAttribute;
 import com.trustnet.entity.ProductDetailResponse;
+import com.trustnet.entity.ProductSeller;
 import com.trustnet.entity.SellerDetail;
 import com.trustnet.entity.SubCategory;
 import com.trustnet.entity.UserCart;
@@ -157,6 +158,15 @@ public class ProductService {
 		List<SellerDetail> recentSellers = (List<SellerDetail>) tnRepository.findRecords(
 				"select * from nearbymaster.seller_detail sd order by modified_date desc limit 3", SellerDetail.class);
 		return recentSellers;
+	}
+
+	public SellerDetail getSellerDetail(String sellerId) {
+		return (SellerDetail) tnRepository.findById(sellerId, SellerDetail.class);
+	}
+
+	public List<ProductSeller> getProductSellerDetail(String sellerId) {
+		return (List<ProductSeller>) tnRepository
+				.findRecords("select * from nearbymaster.product_seller where seller_id = " + "'" + sellerId + "'", ProductSeller.class);
 	}
 
 	/*

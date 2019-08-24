@@ -93,6 +93,28 @@ public class ProductController {
 		return "sellerDetail Add/Update got failed";
 	}
 
+	@GetMapping("/sellerDetail")
+	public SellerDetail getSellerDetail(@RequestParam("sellerId") String sellerId) {
+		_LOGGER.debug("[get sellerDetail]" + sellerId);
+		try {
+			return productService.getSellerDetail(sellerId);
+		} catch (Exception e) {
+			_LOGGER.error(e.getMessage());
+		}
+		return null;
+	}
+
+	@GetMapping("/productSellerDetail")
+	public List<ProductSeller> getProductSellerDetail(@RequestParam("sellerId") String sellerId) {
+		_LOGGER.debug("[get getProductSellerDetail]" + sellerId);
+		try {
+			return productService.getProductSellerDetail(sellerId);
+		} catch (Exception e) {
+			_LOGGER.error(e.getMessage());
+		}
+		return null;
+	}
+
 	@PutMapping("/subCategory")
 	public String addUpdateSubCategory(@RequestBody SubCategory subCategory) {
 		_LOGGER.debug("[Add/update subCategory]" + subCategory);
