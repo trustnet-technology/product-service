@@ -165,8 +165,9 @@ public class ProductService {
 	}
 
 	public List<ProductSeller> getProductSellerDetail(String sellerId) {
-		return (List<ProductSeller>) tnRepository
-				.findRecords("select * from nearbymaster.product_seller where seller_id = " + "'" + sellerId + "'", ProductSeller.class);
+		return (List<ProductSeller>) tnRepository.findRecords(
+				"select * from nearbymaster.product_seller where seller_id = " + "'" + sellerId + "'",
+				ProductSeller.class);
 	}
 
 	/*
@@ -285,6 +286,16 @@ public class ProductService {
 
 	public void addUpdateObject(Object object) {
 		tnRepository.update(object);
+	}
+
+	public List<Product> searchProducts(String productName, String subCategooryId) {
+		
+		StringBuilder query = new StringBuilder("select * from nearbymaster.product where product_name like '%" + productName + "%'");
+		if(null != subCategooryId && !subCategooryId.isEmpty()) {
+			query.append(" and sub_category_id = " + "'" + subCategooryId + "'");
+		}
+
+		return (List<Product>) tnRepository.findRecords(query.toString(), Product.class);
 	}
 
 }

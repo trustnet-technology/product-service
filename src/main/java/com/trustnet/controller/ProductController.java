@@ -104,6 +104,12 @@ public class ProductController {
 		return null;
 	}
 
+	@GetMapping("/search")
+	public List<Product> searchProducts(@RequestParam("productName") String productName,
+			@RequestParam(value = "subCategoryId", required = false) String subCategoryId) {
+		return productService.searchProducts(productName, subCategoryId);
+	}
+
 	@GetMapping("/productSellerDetail")
 	public List<ProductSeller> getProductSellerDetail(@RequestParam("sellerId") String sellerId) {
 		_LOGGER.debug("[get getProductSellerDetail]" + sellerId);
