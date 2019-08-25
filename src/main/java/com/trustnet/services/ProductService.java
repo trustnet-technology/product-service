@@ -288,11 +288,15 @@ public class ProductService {
 		tnRepository.update(object);
 	}
 
-	public List<Product> searchProducts(String productName, String subCategooryId) {
+	public List<Product> searchProducts(String productName, String subCategooryId, String minPrice) {
 		
 		StringBuilder query = new StringBuilder("select * from nearbymaster.product where product_name like '%" + productName + "%'");
 		if(null != subCategooryId && !subCategooryId.isEmpty()) {
 			query.append(" and sub_category_id = " + "'" + subCategooryId + "'");
+		}
+		
+		if(null != minPrice && !minPrice.isEmpty()) {
+			query.append(" and min_price = " + "'" + minPrice + "'");
 		}
 
 		return (List<Product>) tnRepository.findRecords(query.toString(), Product.class);

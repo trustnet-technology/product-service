@@ -106,8 +106,9 @@ public class ProductController {
 
 	@GetMapping("/search")
 	public List<Product> searchProducts(@RequestParam("productName") String productName,
-			@RequestParam(value = "subCategoryId", required = false) String subCategoryId) {
-		return productService.searchProducts(productName, subCategoryId);
+			@RequestParam(value = "subCategoryId", required = false) String subCategoryId,
+			@RequestParam(value = "minPrice", required = false) String minPrice) {
+		return productService.searchProducts(productName, subCategoryId, minPrice);
 	}
 
 	@GetMapping("/productSellerDetail")
