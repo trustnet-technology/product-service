@@ -1,5 +1,7 @@
 package com.trustnet.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -45,6 +47,12 @@ public class UserOrder {
 
 	@Column(name = "ORDER_PAYMENT_MODE")
 	private String orderPaymentMode;
+	
+	@Column(name = "CREATED_DATE")
+	public Date createdDate;
+	
+	@Column(name = "MODIFIED_DATE")
+	public Date modifiedDate;
 
 	public String getUserOrderId() {
 		return userOrderId;
@@ -102,4 +110,32 @@ public class UserOrder {
 		this.orderPaymentMode = orderPaymentMode;
 	}
 
+	/**
+	 * @return the createdDate
+	 */
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	/**
+	 * @param createdDate the createdDate to set
+	 */
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	/**
+	 * @return the modifiedDate
+	 */
+	public Date getModifiedDate() {
+		return modifiedDate;
+	}
+
+	/**
+	 * @param modifiedDate the modifiedDate to set
+	 */
+	public void setModifiedDate(Date modifiedDate) {
+		this.modifiedDate = modifiedDate;
+	}
+	
 }
