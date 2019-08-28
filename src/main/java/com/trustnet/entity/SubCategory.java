@@ -19,6 +19,9 @@ public class SubCategory {
 	@Column(name = "CATEGORY_NAME")
 	private String categoryName;
 	
+	@Column(name = "SUB_CATEGORY_NAME")
+	private String subCategoryName;
+	
 	@Column(name = "SIZE")
 	private String size;
 	
@@ -74,6 +77,14 @@ public class SubCategory {
 	 */
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
+	}
+
+	public String getSubCategoryName() {
+		return subCategoryName;
+	}
+
+	public void setSubCategoryName(String subCategoryName) {
+		this.subCategoryName = subCategoryName;
 	}
 
 	/**

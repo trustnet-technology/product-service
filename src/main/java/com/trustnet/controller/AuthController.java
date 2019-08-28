@@ -1,5 +1,7 @@
 package com.trustnet.controller;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +50,14 @@ public class AuthController {
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
 		String jwt = tokenProvider.generateToken(authentication);
-		return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
+		
+		String userNameOrEmail = loginRequest.getUsernameOrEmail();
+		Optional<User> optionalUser = userRepository.findByUsernameOrEmail(userNameOrEmail, userNameOrEmail);
+		User user = (optionalUser != null)? optionalUser.get() : null;
+
+		JwtAuthenticationResponse jwtResponse = new JwtAuthenticationResponse(jwt, user);
+		
+		return ResponseEntity.ok(jwtResponse);
 	}
 
 	@PostMapping("/signup")

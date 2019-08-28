@@ -32,7 +32,10 @@ public class UserOrder {
 
 	@Column(name = "USER_ID")
 	private String userId;
-
+	
+	@Column(name = "PRODUCT_ID")
+	private String productId;
+	
 	@Column(name = "PRODUCT_ATTRIBUTE_ID")
 	private String productAttributeId;
 
@@ -41,6 +44,9 @@ public class UserOrder {
 
 	@Column(name = "QUANTITY")
 	private String quantity;
+	
+	@Column(name = "PRICE")
+	private String price;
 
 	@Column(name = "STATUS")
 	private String statue;
@@ -53,6 +59,22 @@ public class UserOrder {
 	
 	@Column(name = "MODIFIED_DATE")
 	public Date modifiedDate;
+	
+	// Non Table Fields 
+	@Column(name = "USER_NAME")
+	private String userName;
+	
+	@Column(name = "USER_ADDRESS")
+	private String userAddress;
+	
+	@Column(name = "USER_CONTACT")
+	private String contactNumber;
+	
+	@Column(name = "PRODUCT_SELLER_NAME")
+	private String productSellerName;
+	
+	@Column(name = "PRODUCT_NAME")
+	private String productName;
 
 	public String getUserOrderId() {
 		return userOrderId;
@@ -136,6 +158,62 @@ public class UserOrder {
 	 */
 	public void setModifiedDate(Date modifiedDate) {
 		this.modifiedDate = modifiedDate;
+	}
+
+	public String getProductId() {
+		return productId;
+	}
+
+	public void setProductId(String productId) {
+		this.productId = productId;
+	}
+
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getUserAddress() {
+		return userAddress;
+	}
+
+	public void setUserAddress(String userAddress) {
+		this.userAddress = userAddress;
+	}
+
+	public String getContactNumber() {
+		return contactNumber;
+	}
+
+	public void setContactNumber(String contactNumber) {
+		this.contactNumber = contactNumber;
+	}
+
+	public String getProductSellerName() {
+		return productSellerName;
+	}
+
+	public void setProductSellerName(String productSellerName) {
+		this.productSellerName = productSellerName;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 	
 }

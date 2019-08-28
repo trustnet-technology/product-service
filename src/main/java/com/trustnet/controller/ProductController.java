@@ -1,10 +1,15 @@
 package com.trustnet.controller;
 
+import java.time.Instant;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -13,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.amazonaws.services.sqs.AmazonSQS;
+import com.amazonaws.services.sqs.model.MessageAttributeValue;
+import com.amazonaws.services.sqs.model.SendMessageRequest;
 import com.trustnet.entity.Category;
 import com.trustnet.entity.Product;
 import com.trustnet.entity.ProductAttribute;
@@ -32,6 +40,7 @@ public class ProductController {
 
 	@Autowired
 	private ProductService productService;
+
 
 	@PutMapping("/product")
 	public String addUpdateProduct(@RequestBody Product product) {
@@ -208,6 +217,7 @@ public class ProductController {
 
 	@PostMapping("/userOrder")
 	public Object addUserOrder(@RequestBody UserOrder userOrder) {
+		
 		return productService.saveUserOrder(userOrder);
 	}
 }

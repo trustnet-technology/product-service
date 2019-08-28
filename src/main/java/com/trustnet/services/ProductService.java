@@ -2,12 +2,20 @@ package com.trustnet.services;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
+import com.amazonaws.services.sqs.AmazonSQS;
+import com.amazonaws.services.sqs.model.MessageAttributeValue;
+import com.amazonaws.services.sqs.model.SendMessageRequest;
 import com.trustnet.dto.ProductSellerDTO;
 import com.trustnet.entity.Product;
 import com.trustnet.entity.ProductAttribute;
@@ -17,13 +25,24 @@ import com.trustnet.entity.SellerDetail;
 import com.trustnet.entity.SubCategory;
 import com.trustnet.entity.UserCart;
 import com.trustnet.entity.UserOrder;
+import com.trustnet.queue.SqsManager;
 import com.trustnet.repo.TrustnetRepository;
+import com.trustnet.util.ObjectUtility;
+
 
 @Service
 public class ProductService {
+	@Autowired
+	AmazonSQS amazonSQS;
+	
+	@Value("${amazon.aws.sqs.url}")
+	private String awsSqsUrl;
 
 	@Autowired
 	TrustnetRepository tnRepository;
+	
+	@Autowired
+	SqsManager sqsManager;
 
 	@Autowired
 	private UserDetailsService userDetailsService;
@@ -281,6 +300,63 @@ public class ProductService {
 	}
 
 	public Object saveUserOrder(UserOrder userOrder) {
+		Map<String, Object>  data = ObjectUtility.parameters(userOrder);
+		
+		Map<String, Object> transformedData = new HashMap<>();
+		
+		data.forEach( (k,v) -> {
+			if (k.equals("userOrderId")) {
+				transformedData.put("order_id", v);
+			}
+			if (k.equals("userId")) {
+				transformedData.put("user_id", v);
+			}
+			if (k.equals("productId")) {
+				transformedData.put("product_id", v);
+			}
+			if (k.equals("productAttributeId")) {
+				transformedData.put("product_variant_id", v);
+			}
+			if (k.equals("productSellerId")) {
+				transformedData.put("vendor_id", v);
+			}
+			if (k.equals("quantity")) {
+				transformedData.put("quantity", v);
+			}
+			if (k.equals("price")) {
+				transformedData.put("product_price", v);
+			}
+			if (k.equals("statue")) {
+				transformedData.put("status", v);
+			}
+			if (k.equals("orderPaymentMode")) {
+				transformedData.put("payment_method", v);
+			}
+			if (k.equals("createdDate")) {
+				transformedData.put("date", v);
+			}
+			if (k.equals("userName")) {
+				transformedData.put("customer_name", v);
+			}
+			if (k.equals("userAddress")) {
+				transformedData.put("Address", v);
+			}
+			if (k.equals("contactNumber")) {
+				transformedData.put("contact_no", v);
+			}
+			if (k.equals("productSellerName")) {
+				transformedData.put("vendor_name", v);
+			}
+			if (k.equals("productName")) {
+				transformedData.put("product_name", v);
+			}
+			
+		});
+		
+		JSONObject json = new JSONObject(transformedData);
+		
+		sqsManager.sendMessage(json);
+		
 		return tnRepository.save(userOrder);
 	}
 
